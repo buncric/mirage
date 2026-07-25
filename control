@@ -1,0 +1,9 @@
+Package: com.buzizaa.mirage
+Name: Mirage
+Version: 2.0.3
+Architecture: iphoneos-arm
+Description: Tweak giả lập phiên bản ứng dụng và phiên bản iOS từ menu 3D Touch hoặc Cài đặt
+Maintainer: buzizaa
+Author: buzizaa
+Section: Tweaks
+Depends: com.opa334.altlist

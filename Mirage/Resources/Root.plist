@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.buzizaa.mirage</string>
+			<key>key</key>
+			<string>isTweakEnabled</string>
+			<key>label</key>
+			<string>Bật Mirage</string>
+			<key>PostNotification</key>
+			<string>com.buzizaa.mirage.settingschanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.buzizaa.mirage</string>
+			<key>key</key>
+			<string>is3DMenu</string>
+			<key>label</key>
+			<string>Thêm tác vụ vào menu 3D Touch</string>
+			<key>PostNotification</key>
+			<string>com.buzizaa.mirage.settingschanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>ỨNG DỤNG</string>
+			<key>footerText</key>
+			<string>Chỉnh phiên bản giả lập cho từng ứng dụng</string>
+		</dict>
+	<dict>
+	<key>cell</key>
+	<string>PSLinkListCell</string>
+	<key>detail</key>
+	<string>AVSApplicationsController</string>
+	<key>subcontrollerClass</key>
+	<string>AVSApplicationDetails</string>
+	<key>label</key>
+	<string>Ứng dụng</string>
+	<key>sections</key>
+	<array>
+		<dict>
+			<key>sectionType</key>
+			<string>Visible</string>
+		</dict>
+		<dict>
+			<key>sectionType</key>
+			<string>Hidden</string>
+		</dict>
+	</array>
+	<key>showIdentifiersAsSubtitle</key>
+	<true/>
+	<key>useSearchBar</key>
+	<true/>
+	</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>KHÁC</string>
+			<key>footerText</key>
+			<string>Khôi phục toàn bộ tuỳ chọn Mirage về trạng thái mặc định ban đầu</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>defaultsettings:</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>icon</key>
+			<string>respring.png</string>
+			<key>label</key>
+			<string>Khôi phục cài đặt mặc định</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>GIỚI THIỆU</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>donationLink</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>icon</key>
+			<string>donate.png</string>
+			<key>label</key>
+			<string>paypal.me/buzizaa</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>openTwitter</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>icon</key>
+			<string>Twitter.png</string>
+			<key>label</key>
+			<string>twitter.com/buzizaa</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>openTelegram</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>icon</key>
+			<string>Telegram.png</string>
+			<key>label</key>
+			<string>t.me/buzizaa</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>Mirage</string>
+</dict>
+</plist>
