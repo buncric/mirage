@@ -2,55 +2,53 @@
 
 iOS tweak that spoofs app version and iOS version per app, switchable straight from the 3D Touch menu or Settings. Includes an optional forced-update blocker. Supports iOS 14.5–16.5 on rootful, rootless and roothide jailbreaks.
 
-Tweak iOS (jailbreak) giả lập phiên bản ứng dụng và phiên bản iOS cho từng app riêng lẻ, điều khiển từ Cài đặt hoặc menu 3D Touch trên icon app.
-
 - **Package:** `com.buzizaa.mirage`
 - **Version:** 2.0.3
 - **Author:** buzizaa
-- **Phụ thuộc:** [AltList](https://github.com/opa334/AltList) (`com.opa334.altlist`)
+- **Depends on:** [AltList](https://github.com/opa334/AltList) (`com.opa334.altlist`)
 
-## Tính năng
+## Features
 
-- **Giả lập phiên bản app** — ghi đè `CFBundleShortVersionString` và `CFBundleVersion` cho từng app.
-- **Giả lập phiên bản iOS** — ghi đè `UIDevice.systemVersion`, `NSProcessInfo.operatingSystemVersion` và `operatingSystemVersionString`.
-- **Chặn cập nhật bắt buộc** (tuỳ chọn) — nhận diện và vô hiệu hoá các màn hình "bắt buộc cập nhật" bằng cách lọc alert, view controller, phản hồi mạng và cờ trong `NSUserDefaults`.
-- **Giả lập thử nghiệm** — mở rộng phạm vi hook cho các app đọc `Info.plist` qua đường vòng.
-- **Menu 3D Touch** — thêm tác vụ đổi phiên bản trực tiếp khi giữ icon app.
+- **App version spoofing** — overrides `CFBundleShortVersionString` and `CFBundleVersion` on a per-app basis.
+- **iOS version spoofing** — overrides `UIDevice.systemVersion`, `NSProcessInfo.operatingSystemVersion` and `operatingSystemVersionString`.
+- **Forced-update blocker** (optional) — detects and suppresses "you must update" screens by filtering alerts, view controllers, network responses and flags stored in `NSUserDefaults`.
+- **Experimental spoofing** — widens hook coverage for apps that read `Info.plist` through indirect paths.
+- **3D Touch menu** — adds a version-switching action when you long-press an app icon.
 
-Phạm vi hook bao gồm `NSBundle`, `NSDictionary`, `CFBundleGetValueForInfoDictionaryKey`, `UIDevice`, `NSProcessInfo`, `NSURLSession`, `NSURLConnection`, `NSData`, `NSUserDefaults`, `NSJSONSerialization`, `SBIconView`, `UIViewController`, `UIView` và `UIApplication`.
+Hook coverage includes `NSBundle`, `NSDictionary`, `CFBundleGetValueForInfoDictionaryKey`, `UIDevice`, `NSProcessInfo`, `NSURLSession`, `NSURLConnection`, `NSData`, `NSUserDefaults`, `NSJSONSerialization`, `SBIconView`, `UIViewController`, `UIView` and `UIApplication`.
 
-Việc giả lập phiên bản app chỉ áp dụng khi executable của bundle trùng với tiến trình hiện tại, để SpringBoard và Settings không vô tình đọc phải giá trị giả.
+App version spoofing only applies when the bundle executable matches the current process, so SpringBoard and Settings never read a spoofed value by accident.
 
-## Hỗ trợ
+## Compatibility
 
-- iOS 14.5 – 16.5, kiến trúc `arm64` và `arm64e`
-- Rootful, rootless và roothide (dùng `ROOT_PATH_NS` / `jbroot`)
+- iOS 14.5 – 16.5, `arm64` and `arm64e`
+- Rootful, rootless and roothide (uses `ROOT_PATH_NS` / `jbroot`)
 
-## Build
+## Building
 
-Cần [Theos](https://theos.dev) và một iOS SDK hợp lệ.
+Requires [Theos](https://theos.dev) and a valid iOS SDK.
 
 ```bash
 make clean package
 ```
 
-File `.deb` sẽ nằm trong thư mục `packages/`. Cài lên máy rồi respring.
+The resulting `.deb` lands in `packages/`. Install it on device, then respring.
 
-## Cấu trúc
+## Layout
 
-| Đường dẫn | Nội dung |
+| Path | Contents |
 | --- | --- |
-| `Tweak.x` / `Tweak.h` | Toàn bộ logic hook |
-| `Mirage/` | Bundle Preferences (AltList, PreferenceLoader) |
-| `layout/` | Tài nguyên cài vào `/Library/Application Support/Mirage.bundle` |
-| `Mirage.plist` | Filter — nạp vào SpringBoard, UIKit, UIKitCore |
-| `control` | Metadata gói dpkg |
-| `UPGRADE_PLAN_AND_TEST_MATRIX.md` | Kế hoạch nâng cấp và ma trận test thủ công |
+| `Tweak.x` / `Tweak.h` | All hook logic |
+| `Mirage/` | Preferences bundle (AltList, PreferenceLoader) |
+| `layout/` | Resources installed to `/Library/Application Support/Mirage.bundle` |
+| `Mirage.plist` | Filter — loads into SpringBoard, UIKit, UIKitCore |
+| `control` | dpkg package metadata |
+| `UPGRADE_PLAN_AND_TEST_MATRIX.md` | Upgrade plan and manual test matrix |
 
-## Giới hạn đã biết
+## Known limitations
 
-App vẫn có thể phát hiện phiên bản thật bằng cách đọc file ở tầng thấp hơn, dùng bản cache riêng, chống hook, hoặc xác thực phiên bản phía server. Chuỗi `operatingSystemVersionString` là chuỗi tổng hợp, nên app nào phân tích đúng định dạng build string của Apple có thể cần tinh chỉnh riêng.
+An app can still discover its real version by reading files through lower-level APIs, parsing its own cached copy, running anti-hook checks, or validating the version server-side. The `operatingSystemVersionString` value is a synthesized string, so apps that parse Apple's exact build-string format may need per-app tuning.
 
-## Giấy phép
+## License
 
 GNU General Public License v3.0
